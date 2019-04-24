@@ -8,9 +8,9 @@ volumes:
 
 services:
   test:
-    build:
+    build: 
       context: ../../
-      dockerfile: docker/dev/Dockerfile
+      dockerfile: docker/dev/Dockerfile  
     volumes:
       - cache:/cache
       - build:/build
@@ -24,7 +24,7 @@ services:
       TEST_OUTPUT_DIR: /reports
 
   builder:
-    build:
+    build: 
       context: ../../
       dockerfile: docker/dev/Dockerfile
     volumes:
@@ -33,14 +33,15 @@ services:
     command: ["pip", "wheel", "--no-index", "-f /build", "."]
 
   agent:
-    image: nileshgule/ansible
+    image: jmenga/ansible
     links:
       - db
     environment:
       PROBE_HOST: "db"
       PROBE_PORT: "3306"
     command: ["probe.yml"]
-  db:
+
+  db: 
     image: mysql:5.6
     hostname: db
     expose:

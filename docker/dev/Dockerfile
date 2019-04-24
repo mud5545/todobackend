@@ -1,7 +1,7 @@
-FROM nileshgule/todobackend-base:latest
-MAINTAINER Nilesh Gule <vn_nilesh@yahoo.com>
+FROM jmenga/todobackend-base:latest
+MAINTAINER Justin Menga <justin.menga@gmail.com>
 
-# install dev/build dependencies
+# Install dev/build dependencies
 RUN apt-get update && \
     apt-get install -qy python-dev libmysqlclient-dev
 
@@ -25,10 +25,11 @@ VOLUME /reports
 COPY scripts/test.sh /usr/local/bin/test.sh
 RUN chmod +x /usr/local/bin/test.sh
 
-# Set the default for entrypoint and command string
+# Set defaults for entrypoint and command string
 ENTRYPOINT ["test.sh"]
 CMD ["python", "manage.py", "test", "--noinput"]
 
 # Add application source
 COPY src /application
 WORKDIR /application
+

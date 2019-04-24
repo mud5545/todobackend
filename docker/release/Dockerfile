@@ -1,10 +1,10 @@
-FROM nileshgule/todobackend-base:latest
-MAINTAINER Nilesh Gule <vn_nilesh@yahoo.com>
+FROM jmenga/todobackend-base:latest
+MAINTAINER Justin Menga <justin.menga@gmail.com>
 
 # Copy application artifacts
 COPY target /wheelhouse
 
-# Install the application
+# Install application
 RUN . /appenv/bin/activate && \
-  pip install --no-index -f /wheelhouse todobackend && \
-  rm -rf /wheelhouse
+    pip install --no-index -f /wheelhouse todobackend && \
+    rm -rf /wheelhouse
